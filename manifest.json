@@ -1,0 +1,12 @@
+{
+    "files": {
+        "C_REQUEST_EVENT_MATCHING_TELEPORT.def": "93c72b77f3c931302e72b5d2f979c6bd8f8297094cc3b051524069c9d5e854a4",
+        "README.MD": "4b32b7ca58d15fd6e0a69f863ca4506be39c20821b9405c66344a1a2f4d07800",
+        "dungeon-list.json": "f97aab2abe2564f61237ab26926e866036c52fe4dc6360def77c80fb7081b1c7",
+        "index.js": "e0554cc12f4795f4b415cd9a24d4fa8a1a6a2ec9be9b02cf82515f7f54c12d3e",
+        "module.json": "9cc6de8d5d7c5274326cdf4c22669142373b85f96612127876b6be1266e4457e"
+    },
+    "defs": {
+        "S_ANNOUNCE_UPDATE_NOTIFICATION": 1
+    }
+}

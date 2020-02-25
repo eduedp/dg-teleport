@@ -1,0 +1,10 @@
+{
+    "name": "dg-teleport",
+    "author": "edu",
+    "description": "Fast teleport to every important dungeon",
+    "options": {
+        "niceName": "DG-Teleport"
+    },
+    "servers": ["https://raw.githubusercontent.com/eduedp/dg-teleport/master/"],
+    "disableAutoUpdate": false
+}
