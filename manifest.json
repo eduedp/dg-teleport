@@ -1,12 +1,13 @@
 {
     "files": {
-        "C_REQUEST_EVENT_MATCHING_TELEPORT.def": "93c72b77f3c931302e72b5d2f979c6bd8f8297094cc3b051524069c9d5e854a4",
-        "README.MD": "4b32b7ca58d15fd6e0a69f863ca4506be39c20821b9405c66344a1a2f4d07800",
+        "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def": "80dd882b9e8933e0e2fd0aba4a0f9f0e449aa257c7cd3e5f950dd748adaa8549",
+        "README.MD": "db76fdbec6479bf3b828bebae09032fe6e44c5a3e97b73e68d706045a2ac39bb",
         "dungeon-list.json": "f97aab2abe2564f61237ab26926e866036c52fe4dc6360def77c80fb7081b1c7",
-        "index.js": "e0554cc12f4795f4b415cd9a24d4fa8a1a6a2ec9be9b02cf82515f7f54c12d3e",
+        "index.js": "61af2c55b88aabdf09fa9a942585bdc372a1866dc9a56827a15ee107a45040c1",
         "module.json": "9cc6de8d5d7c5274326cdf4c22669142373b85f96612127876b6be1266e4457e"
     },
     "defs": {
-        "S_ANNOUNCE_UPDATE_NOTIFICATION": 1
+        "S_ANNOUNCE_UPDATE_NOTIFICATION": 1,
+        "S_LOAD_TOPO": "raw"
     }
 }

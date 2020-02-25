@@ -3,14 +3,14 @@ module.exports = function DGTeleport(mod) {
     const path = require('path');
 
     const dungeons = jsonRequire('./dungeon-list.json');
-    mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.def'));
+    mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.0.def'));
 
     cmd.add('dg', (value) => {
         if (value && value.length > 0) value = value.toLowerCase();
         if (value) {
             const dungeon = search(value);
             if (!dungeon) {
-                cmd.message(`Cannot found dungeon [${value}]`);
+                cmd.message(`Cannot find dungeon [${value}]`);
                 return;
             }
 
@@ -63,9 +63,24 @@ module.exports = function DGTeleport(mod) {
     }
 
     function teleport(dungeon) {
+        let success = false;
         mod.send('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, {
             quest: dungeon.quest,
             instance: dungeon.instance,
         });
+
+        const zoneLoaded = mod.hook('S_LOAD_TOPO', 'raw', (e) => {
+            success = true;
+            mod.unhook(zoneLoaded);
+            cmd.message(`Successfully teleported to ${dungeon.name}.`);
+        })
+
+        mod.setTimeout(() => {
+            if (!success) {
+                mod.unhook(zoneLoaded);
+                cmd.message(`You cannot teleport to ${dungeon.name}. Check your iLvl.`);
+            }
+                
+        }, 1000);
 	}
 };
