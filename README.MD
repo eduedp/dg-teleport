@@ -7,11 +7,19 @@ Fast teleport to every important dungeon with GUI or not
 ### `dg "name"`
 - Instant teleport to dungeon entrance
 
+## Instalation
+- Copy the mod to TeraToolbox/mods folder
+- Add the following opcodes to TeraToolbox/data/opcodes/protocol.xxxxxxx.map file:
+
+### NA:
+C_REQUEST_EVENT_MATCHING_TELEPORT 57284
+
 ## Info
 You can use part of dungeon name or its known abbreviations. eg.: gls, aahm, aq...
 
 You need to have proper ilvl to teleport to each dungeon.
 
 Mod uses the original 'Go to Dungeon Entrance' button to teleport you, so don't be afraid.
+
 
 ---
