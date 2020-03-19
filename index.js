@@ -2,8 +2,16 @@ module.exports = function DGTeleport(mod) {
     const cmd = mod.command || mod.require.command;
     const path = require('path');
 
-    const dungeons = jsonRequire('./dungeon-list.json');
+    const QUEST_ID_MODIFIER = 90000;
+    const dungeons = jsonRequire('./dungeon-list.json').filter((x) => x.active);
+    let quests;
+
     mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.0.def'));
+
+    mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, (e) => {
+        quests = [];
+        quests = e.quests.map((x) => x.id);
+    });
 
     cmd.add('dg', (value) => {
         if (value && value.length > 0) value = value.toLowerCase();
@@ -59,13 +67,17 @@ module.exports = function DGTeleport(mod) {
     }
 
     function search(value) {
-        return dungeons.find((e) => e.dg.map((x) => x.toLowerCase()).includes(value) || (value.length > 3 && e.name.toLowerCase().includes(value)));
+        return dungeons.find((e) => e.active && e.dg.map((x) => x.toLowerCase()).includes(value) || (value.length > 3 && e.name.toLowerCase().includes(value)));
     }
 
     function teleport(dungeon) {
         let success = false;
+        let idModifier = 0;
+
+        if(quests && !quests.includes(dungeon.quest)) idModifier = QUEST_ID_MODIFIER;
+
         mod.send('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, {
-            quest: dungeon.quest,
+            quest: dungeon.quest + idModifier,
             instance: dungeon.instance,
         });
 
@@ -82,5 +94,5 @@ module.exports = function DGTeleport(mod) {
             }
                 
         }, 1000);
-	}
+    }
 };

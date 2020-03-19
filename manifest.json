@@ -2,12 +2,13 @@
     "files": {
         "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def": "80dd882b9e8933e0e2fd0aba4a0f9f0e449aa257c7cd3e5f950dd748adaa8549",
         "README.MD": "db76fdbec6479bf3b828bebae09032fe6e44c5a3e97b73e68d706045a2ac39bb",
-        "dungeon-list.json": "f97aab2abe2564f61237ab26926e866036c52fe4dc6360def77c80fb7081b1c7",
-        "index.js": "61af2c55b88aabdf09fa9a942585bdc372a1866dc9a56827a15ee107a45040c1",
+        "dungeon-list.json": "e6902700c350fff8fdda1ed37f8862439dec5ee9a4b10d02630fec74814363da",
+        "index.js": "f60bb0573533b798930deac1f4d40a0972fac0108bb15dff0d24729b7af102db",
         "module.json": "9cc6de8d5d7c5274326cdf4c22669142373b85f96612127876b6be1266e4457e"
     },
     "defs": {
         "S_ANNOUNCE_UPDATE_NOTIFICATION": 1,
+        "S_AVAILABLE_EVENT_MATCHING_LIST": 2,
         "S_LOAD_TOPO": "raw"
     }
 }

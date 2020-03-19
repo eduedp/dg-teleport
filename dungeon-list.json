@@ -1,135 +1,170 @@
-    [
-        {
-            "dg": ["aq"],
-            "name": "Akalath Quarantine",
-            "quest": 2168,
-            "instance": 3023,
-            "color": "#d11141"
-        },
-        {
-            "dg": ["gv", "gvn", "gvh"],
-            "name": "Gossamer Vault",
-            "quest": 2166,
-            "instance": 3101,
-            "color": "#d11141"
-        },
-        {
-            "dg": ["bs", "bahaar"],
-            "name": "Bahaar's Sanctum",
-            "quest": 2162,
-            "instance": 9044,
-            "color": "#d11141"
-        },
-        {
-            "dg": ["df", "dfn", "dfnm", "dfh", "dfhm"],
-            "name": "Demokron Factory",
-            "quest": 2124,
-            "instance": 9767,
-            "color": "#f37735"
-        },
-        {
-            "dg": ["gls", "glsn", "glsnm", "glsh", "glshm"],
-            "name": "Grotto of Lost Souls",
-            "quest": 2160,
-            "instance": 9782,
-            "color": "#f37735"
-        },
-        {
-            "dg": ["aa", "aan", "aanm", "aah", "aahm"],
-            "name": "Antaroth's Abyss",
-            "quest": 2156,
-            "instance": 9720,
-            "color": "#f37735"
-        },
-        {
-            "dg": ["fi", "fin", "finm", "fih", "fihm"],
-            "name": "Forsaken Island",
-            "quest": 1667,
-            "instance": 9059,
-            "color": "#f37735"
-        },
-        {
-            "dg": ["rk", "rkn", "rknm", "rkh", "rkhm"],
-            "name": "RK-9 Kennel",
-            "quest": 2152,
-            "instance": 9735,
-            "color": "#ffc425"
-        },
-        {
-            "dg": ["rm", "rmn", "rmnm", "rmh", "rmhm"],
-            "name": "Ruinous Manor",
-            "quest": 2137,
-            "instance": 9770,
-            "color": "#ffc425"
-        },
-        {
-            "dg": ["vs", "vsn", "vsnm", "vsh", "vshm"],
-            "name": "Velik's Sanctuary",
-            "quest": 2142,
-            "instance": 9781,
-            "color": "#ffc425"
-        },
-        {
-            "dg": ["mc"],
-            "name": "Macellarious Catacombs",
-            "quest": 2101,
-            "instance": 9809,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["ss", "ssn", "ssnm", "ssh", "sshm"],
-            "name": "Shadow Sanguinary",
-            "quest": 2126,
-            "instance": 9768,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["dr", "drc"],
-            "name": "Dark Reach Citadel",
-            "quest": 2158,
-            "instance": 9783,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["rr"],
-            "name": "Red Refuge",
-            "quest": 2154,
-            "instance": 9739,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["lk"],
-            "name": "Lilith's Keep",
-            "quest": 2133,
-            "instance": 9769,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["vh"],
-            "name": "Velik's Hold",
-            "quest": 2140,
-            "instance": 9780,
-            "color": "#00aedb"
-        },
-        {
-            "dg": ["tr"],
-            "name": "Thaumetal Refinery",
-            "quest": 2147,
-            "instance": 9794,
-            "color": "#00b159"
-        },
-        {
-            "dg": ["rg"],
-            "name": "Ravenous Gorge",
-            "quest": 2150,
-            "instance": 9055,
-            "color": "#00b159"
-        },
-        {
-            "dg": ["cw"],
-            "name": "Channelworks",
-            "quest": 2109,
-            "instance": 9777,
-            "color": "#00b159"
-        }
-    ]
+[
+    {
+        "dg": ["fa", "fac"],
+        "name": "Forbidden Arena Challenge",
+        "quest": 2171,
+        "instance": 3027,
+        "color": "#d11141",
+        "active": true
+    },
+    {
+        "dg": ["cs"],
+        "name": "Corrupted Skynest",
+        "quest": 2169,
+        "instance": 3026,
+        "color": "#d11141",
+        "active": true
+    },
+    {
+        "dg": ["aq"],
+        "name": "Akalath Quarantine",
+        "quest": 2168,
+        "instance": 3023,
+        "color": "#d11141",
+        "active": true
+    },
+    {
+        "dg": ["bs", "bahaar"],
+        "name": "Bahaar's Sanctum",
+        "quest": 2162,
+        "instance": 9044,
+        "color": "#d11141",
+        "active": true
+    },
+    {
+        "dg": ["gv", "gvn", "gvh"],
+        "name": "Gossamer Vault",
+        "quest": 2166,
+        "instance": 3101,
+        "color": "#f37735",
+        "active": true
+    },        
+    {
+        "dg": ["df", "dfn", "dfnm", "dfh", "dfhm"],
+        "name": "Demokron Factory",
+        "quest": 2124,
+        "instance": 9767,
+        "color": "#f37735",
+        "active": true
+    },
+    {
+        "dg": ["gls", "glsn", "glsnm", "glsh", "glshm"],
+        "name": "Grotto of Lost Souls",
+        "quest": 2160,
+        "instance": 9782,
+        "color": "#f37735",
+        "active": true
+    },
+    {
+        "dg": ["aa", "aan", "aanm", "aah", "aahm"],
+        "name": "Antaroth's Abyss",
+        "quest": 2156,
+        "instance": 9720,
+        "color": "#f37735",
+        "active": true
+    },
+    {
+        "dg": ["fi", "fin", "finm", "fih", "fihm"],
+        "name": "Forsaken Island",
+        "quest": 1667,
+        "instance": 9059,
+        "color": "#f37735",
+        "active": false
+    },
+    {
+        "dg": ["rk", "rkn", "rknm", "rkh", "rkhm"],
+        "name": "RK-9 Kennel",
+        "quest": 2152,
+        "instance": 9735,
+        "color": "#ffc425",
+        "active": true
+    },
+    {
+        "dg": ["rm", "rmn", "rmnm", "rmh", "rmhm"],
+        "name": "Ruinous Manor",
+        "quest": 2137,
+        "instance": 9770,
+        "color": "#ffc425",
+        "active": true
+    },
+    {
+        "dg": ["vs", "vsn", "vsnm", "vsh", "vshm"],
+        "name": "Velik's Sanctuary",
+        "quest": 2142,
+        "instance": 9781,
+        "color": "#ffc425",
+        "active": true
+    },
+    {
+        "dg": ["mc"],
+        "name": "Macellarious Catacombs",
+        "quest": 2101,
+        "instance": 9809,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["ss", "ssn", "ssnm", "ssh", "sshm"],
+        "name": "Shadow Sanguinary",
+        "quest": 2126,
+        "instance": 9768,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["dr", "drc"],
+        "name": "Dark Reach Citadel",
+        "quest": 2158,
+        "instance": 9783,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["rr"],
+        "name": "Red Refuge",
+        "quest": 2154,
+        "instance": 9739,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["lk"],
+        "name": "Lilith's Keep",
+        "quest": 2133,
+        "instance": 9769,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["vh"],
+        "name": "Velik's Hold",
+        "quest": 2140,
+        "instance": 9780,
+        "color": "#00aedb",
+        "active": true
+    },
+    {
+        "dg": ["tr"],
+        "name": "Thaumetal Refinery",
+        "quest": 2147,
+        "instance": 9794,
+        "color": "#00b159",
+        "active": true
+    },
+    {
+        "dg": ["rg"],
+        "name": "Ravenous Gorge",
+        "quest": 2150,
+        "instance": 9055,
+        "color": "#00b159",
+        "active": true
+    },
+    {
+        "dg": ["cw"],
+        "name": "Channelworks",
+        "quest": 2109,
+        "instance": 9777,
+        "color": "#00b159",
+        "active": true
+    }
+]
