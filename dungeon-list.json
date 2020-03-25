@@ -8,7 +8,7 @@
         "active": true
     },
     {
-        "dg": ["cs"],
+        "dg": ["cs", "csn", "csh"],
         "name": "Corrupted Skynest",
         "quest": 2169,
         "instance": 3026,
