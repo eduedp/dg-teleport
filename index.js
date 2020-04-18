@@ -1,7 +1,7 @@
 module.exports = function DGTeleport(mod) {
     const cmd = mod.command || mod.require.command;
     const path = require('path');
-    const COLORS = ["#00b159","#00aedb","#ffc425","#f37735","#d11141"]                   
+    const ALL_COLORS = ["#d11141", "#f37735", "#ffc425", "#00b159", "#00aedb", "#7fd6ed", "#ffffff"]
 
     mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.0.def'));
     mod.dispatch.addDefinition('S_AVAILABLE_EVENT_MATCHING_LIST', 0, path.join(__dirname, 'S_AVAILABLE_EVENT_MATCHING_LIST.0.def'));
@@ -19,10 +19,11 @@ module.exports = function DGTeleport(mod) {
                 .filter((x) => available.includes(x.attributes.id))
                 .sort((b, a) => a.attributes.requiredItemLevel - b.attributes.requiredItemLevel || a.attributes.id - b.attributes.id)
 
-            // Get min/max ilvl for coloring
-            const minIlvl = Math.min(...events.map(e => e.attributes.requiredItemLevel))
-            const maxIlvl = Math.max(...events.map(e => e.attributes.requiredItemLevel))
-
+            // Calc ilvl colors           
+            let colors = new Map();
+            const ilvls = [... new Set(events.map(x => x.attributes.requiredItemLevel))]
+            ilvls.forEach((ilvl, x) => colors.set(ilvl, ALL_COLORS[x]))
+            
             events.forEach((event) => {    
                 const zoneId = event.children.find(x => x.name == "TargetList").children.find(x => x.name == "Target").attributes.id
     
@@ -30,7 +31,6 @@ module.exports = function DGTeleport(mod) {
                     // Calc acronyms and iLvl color 
                     const regex = / |of|\(.*\)/i
                     const acronym = dungeon.attributes.string.split(regex).map(x => x.charAt(0).toLowerCase()).join('')
-                    const color = Math.ceil((COLORS.length-1) * (event.attributes.requiredItemLevel - minIlvl) / (maxIlvl - minIlvl))
 
                     teleportList.push({
                         eventId: event.attributes.id,
@@ -38,7 +38,7 @@ module.exports = function DGTeleport(mod) {
                         acronyms: [ acronym, acronym+'n', acronym+'h' ],
                         requiredItemLevel: event.attributes.requiredItemLevel,
                         zoneId: zoneId,
-                        color: COLORS[color]
+                        color: colors.get(event.attributes.requiredItemLevel)
                     })
                 });
             })
