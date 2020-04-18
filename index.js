@@ -1,16 +1,48 @@
 module.exports = function DGTeleport(mod) {
     const cmd = mod.command || mod.require.command;
     const path = require('path');
-
-    const QUEST_ID_MODIFIER = 90000;
-    const dungeons = jsonRequire('./dungeon-list.json').filter((x) => x.active);
-    let quests;
+    const COLORS = ["#00b159","#00aedb","#ffc425","#f37735","#d11141"]                   
 
     mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.0.def'));
+    mod.dispatch.addDefinition('S_AVAILABLE_EVENT_MATCHING_LIST', 0, path.join(__dirname, 'S_AVAILABLE_EVENT_MATCHING_LIST.0.def'));
 
-    mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 2, (e) => {
-        quests = [];
-        quests = e.quests.map((x) => x.id);
+    let teleportList = []
+    mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 0, (e) => {
+        if(teleportList.length > 0) return;
+
+        // Get available Dungeon events id -- type 0
+        const available = e.quests.filter(x => x.type == 0).map(x => x.id)
+
+        mod.queryData('/EventMatching/EventGroup/Event@type=?', ['Dungeon'], true).then((events) => {    
+            // Filter only available and sort by ilvl 
+            events = events
+                .filter((x) => available.includes(x.attributes.id))
+                .sort((b, a) => a.attributes.requiredItemLevel - b.attributes.requiredItemLevel || a.attributes.id - b.attributes.id)
+
+            // Get min/max ilvl for coloring
+            const minIlvl = Math.min(...events.map(e => e.attributes.requiredItemLevel))
+            const maxIlvl = Math.max(...events.map(e => e.attributes.requiredItemLevel))
+
+            events.forEach((event) => {    
+                const zoneId = event.children.find(x => x.name == "TargetList").children.find(x => x.name == "Target").attributes.id
+    
+                mod.queryData('/StrSheet_Dungeon/String@id=?', [zoneId]).then((dungeon) => {   
+                    // Calc acronyms and iLvl color 
+                    const regex = / |of|\(.*\)/i
+                    const acronym = dungeon.attributes.string.split(regex).map(x => x.charAt(0).toLowerCase()).join('')
+                    const color = Math.ceil((COLORS.length-1) * (event.attributes.requiredItemLevel - minIlvl) / (maxIlvl - minIlvl))
+
+                    teleportList.push({
+                        eventId: event.attributes.id,
+                        dungeonName: dungeon.attributes.string,
+                        acronyms: [ acronym, acronym+'n', acronym+'h' ],
+                        requiredItemLevel: event.attributes.requiredItemLevel,
+                        zoneId: zoneId,
+                        color: COLORS[color]
+                    })
+                });
+            })
+        });
     });
 
     cmd.add('dg', (value) => {
@@ -28,9 +60,45 @@ module.exports = function DGTeleport(mod) {
         }
     });
 
-    function jsonRequire(data) {
-        delete require.cache[require.resolve(data)];
-        return require(data);
+    function search(value) {
+        return teleportList.find((e) => e.acronyms.includes(value) || (value.length > 3 && e.dungeonName.toLowerCase().includes(value)));
+    }
+
+    function tpList() {
+        if (Object.keys(teleportList).length > 0) {
+            let list = [];
+            teleportList.forEach((x) => {
+                list.push({
+                    text: `<font color="${x.color}" size="+24">* ${x.dungeonName} <font size="+14">(${x.requiredItemLevel})</font></font><br>`,
+                    command: `dg ${x.acronyms[0]}`,
+                });
+            });
+            gui.parse(list, `<font color="#E0B0FF">Dungeon Teleport List</font>`);
+            list = [];
+        }
+    }
+
+    function teleport(dungeon) {
+        let success = false;
+
+        mod.send('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, {
+            eventId: dungeon.eventId,
+            zoneId: dungeon.zoneId,
+        });
+
+        const zoneLoaded = mod.hook('S_LOAD_TOPO', 'raw', (e) => {
+            success = true;
+            mod.unhook(zoneLoaded);
+            cmd.message(`Successfully teleported to ${dungeon.dungeonName}.`);
+        })
+
+        mod.setTimeout(() => {
+            if (!success) {
+                mod.unhook(zoneLoaded);
+                cmd.message(`You cannot teleport to ${dungeon.dungeonName}. Check your iLvl.`);
+            }
+                
+        }, 1500);
     }
 
     const gui = {
@@ -51,48 +119,4 @@ module.exports = function DGTeleport(mod) {
             });
         },
     };
-
-    function tpList() {
-        if (Object.keys(dungeons).length > 0) {
-            let list = [];
-            dungeons.forEach((x) => {
-                list.push({
-                    text: `<font color="${x.color}" size="+24">* ${x.name}</font><br>`,
-                    command: `dg ${x.dg[0]}`,
-                });
-            });
-            gui.parse(list, `<font color="#E0B0FF">Dungeon Teleport List</font>`);
-            list = [];
-        }
-    }
-
-    function search(value) {
-        return dungeons.find((e) => e.active && e.dg.map((x) => x.toLowerCase()).includes(value) || (value.length > 3 && e.name.toLowerCase().includes(value)));
-    }
-
-    function teleport(dungeon) {
-        let success = false;
-        let idModifier = 0;
-
-        if(quests && !quests.includes(dungeon.quest)) idModifier = QUEST_ID_MODIFIER;
-
-        mod.send('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, {
-            quest: dungeon.quest + idModifier,
-            instance: dungeon.instance,
-        });
-
-        const zoneLoaded = mod.hook('S_LOAD_TOPO', 'raw', (e) => {
-            success = true;
-            mod.unhook(zoneLoaded);
-            cmd.message(`Successfully teleported to ${dungeon.name}.`);
-        })
-
-        mod.setTimeout(() => {
-            if (!success) {
-                mod.unhook(zoneLoaded);
-                cmd.message(`You cannot teleport to ${dungeon.name}. Check your iLvl.`);
-            }
-                
-        }, 1000);
-    }
 };

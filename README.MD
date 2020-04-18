@@ -11,8 +11,7 @@ Fast teleport to every important dungeon with GUI or not
 - Copy the mod to TeraToolbox/mods folder
 - Add the following opcodes to TeraToolbox/data/opcodes/protocol.xxxxxxx.map file:
 
-### NA:
-C_REQUEST_EVENT_MATCHING_TELEPORT 51187
+C_REQUEST_EVENT_MATCHING_TELEPORT
 
 ## Info
 You can use part of dungeon name or its known abbreviations. eg.: gls, aahm, aq...

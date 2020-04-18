@@ -1,14 +1,13 @@
 {
     "files": {
-        "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def": "80dd882b9e8933e0e2fd0aba4a0f9f0e449aa257c7cd3e5f950dd748adaa8549",
-        "README.MD": "466edf317eac978c63d5ac76aa01af5d7ae2d30cad4d198e6a088fa20729deb6",
-        "dungeon-list.json": "1f510759042508d0eab23ab34baa2bd46244718ada8e4327f6aff48d77d4a15e",
-        "index.js": "f60bb0573533b798930deac1f4d40a0972fac0108bb15dff0d24729b7af102db",
+        "C_REQUEST_EVENT_MATCHING_TELEPORT.0.def": "3711f5b00f49050dbe5965d805875028d0808b5eeae95d2f0c32a49f2fa03a26",
+        "README.MD": "63681c6ae657bc1ed27be2b69244407be7dc214adcfbe18cb0da1fcd91cd1555",
+        "S_AVAILABLE_EVENT_MATCHING_LIST.0.def": "d92629bfbbc411cae32ca4f198830692dd14b8e921be415d962bf283c76cfbf2",
+        "index.js": "129efaf757ae909a83db4dc52c784dc7ae8bccd1f79beb4073dbecd1614e8e99",
         "module.json": "9cc6de8d5d7c5274326cdf4c22669142373b85f96612127876b6be1266e4457e"
     },
     "defs": {
         "S_ANNOUNCE_UPDATE_NOTIFICATION": 1,
-        "S_AVAILABLE_EVENT_MATCHING_LIST": 2,
         "S_LOAD_TOPO": "raw"
     }
 }
