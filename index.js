@@ -2,21 +2,24 @@ module.exports = function DGTeleport(mod) {
     const cmd = mod.command || mod.require.command;
     const path = require('path');
     const ALL_COLORS = ["#d11141", "#f37735", "#ffc425", "#00b159", "#00aedb", "#7fd6ed", "#ffffff"]
+    let availableEvents = []
+    let teleportList = []
 
     mod.dispatch.addDefinition('C_REQUEST_EVENT_MATCHING_TELEPORT', 0, path.join(__dirname, 'C_REQUEST_EVENT_MATCHING_TELEPORT.0.def'));
     mod.dispatch.addDefinition('S_AVAILABLE_EVENT_MATCHING_LIST', 0, path.join(__dirname, 'S_AVAILABLE_EVENT_MATCHING_LIST.0.def'));
 
-    let teleportList = []
     mod.hook('S_AVAILABLE_EVENT_MATCHING_LIST', 0, (e) => {
-        if(teleportList.length > 0) return;
-
         // Get available Dungeon events id -- type 0
-        const available = e.quests.filter(x => x.type == 0).map(x => x.id)
+        const newAvailableEvents = e.quests.filter(x => x.type == 0).map(x => x.id)
+        if (newAvailableEvents.join('') == availableEvents.join('')) return
+        
+        availableEvents = newAvailableEvents
+        teleportList = []
 
         mod.queryData('/EventMatching/EventGroup/Event@type=?', ['Dungeon'], true).then((events) => {    
             // Filter only available and sort by ilvl 
             events = events
-                .filter((x) => available.includes(x.attributes.id))
+                .filter((x) => availableEvents.includes(x.attributes.id))
                 .sort((b, a) => a.attributes.requiredItemLevel - b.attributes.requiredItemLevel || a.attributes.id - b.attributes.id)
 
             // Calc ilvl colors           
