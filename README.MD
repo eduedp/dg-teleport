@@ -1,4 +1,4 @@
-# dg-teleport
+# dg-teleport 
 Fast teleport to every important dungeon with GUI or not. Patch 95 safe.
 
 ## Usage
