@@ -2,6 +2,8 @@
 Fast teleport to every important dungeon with GUI or not. Patch 98 safe.
 Will work on any patch, region, language and dungeons added later, as it uses the database from the game.
 
+![](https://github.com/eduedp/dg-teleport/raw/master/screenshot.png)
+
 ## Usage
 ### `dg`
 - Bring the GUI with dungeon list
