@@ -26,12 +26,15 @@ exports.ClientMod = function(mod) {
             })
 
             mod.queryData('/StrSheet_Dungeon/String@id=?', [[... dungeons.keys()]], true).then((result) => {
-                const acronymRegex = / |of|\(.*/i
+                const acronymRegex = / |of|\(.*|\[.*/i
+                const acronymSuffixRegex = / |\[/i
                 result.forEach(d => {
+                    const name = d.attributes.string
                     const dungeon = dungeons.get(d.attributes.id)
-                    const acronym = d.attributes.string.split(acronymRegex).map(x => x?.charAt(0).toLowerCase()).join('')
-                    dungeon['name'] = d.attributes.string
-                    dungeon['acronyms'] = [acronym, acronym+'n', acronym+'h']
+                    let acronym = name.split(acronymRegex).map(x => x?.charAt(0).toLowerCase()).join('')
+                    const acronymSuffix = name.includes('[') ? name.substring(name.indexOf('[')+1).split(acronymSuffixRegex).map(x => x?.charAt(0).toLowerCase()) : []
+                    dungeon['name'] = name
+                    dungeon['acronyms'] = [acronym, acronym+'n', acronym+'h', ...acronymSuffix.map((x) => acronym =  acronym + x)]
                 })
             })
         })
