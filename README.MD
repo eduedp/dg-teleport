@@ -5,7 +5,7 @@ Will work on any patch, region, language and dungeons added later, as it uses th
 ![](https://github.com/eduedp/dg-teleport/raw/master/screenshot.png)
 
 ## Usage
-### `dg`
+### `dg` | `go` | `dungeon`
 - Bring the GUI with dungeon list
 ### `dg "name"`
 ### `dg "abbreviation"`
@@ -21,7 +21,6 @@ Will work on any patch, region, language and dungeons added later, as it uses th
 You can use part of dungeon name or its known abbreviations. eg.: gls, aahm, aq...
 You need to have proper ilvl to teleport to each dungeon.
 Mod uses the original 'Go to Dungeon Entrance' button to teleport you, so it's safe.
-Mod is Patch 93+ safe as it does not use any "banned" opcode.
 
 ## Known issues
 There is a known Vanguard List bug introduced on TERA patch 95, that make the game doesn't load vanguard missions.

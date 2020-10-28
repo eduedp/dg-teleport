@@ -77,7 +77,7 @@ exports.NetworkMod = function(mod) {
         ilvl.forEach((ilvl, x) => colors.set(ilvl, ALL_COLORS[x]))
     })
 
-    cmd.add('dg', (value) => {
+    cmd.add(['dungeon', 'dg', 'go'], (value) => {
         if (value && value.length > 0) value = value.toLowerCase()
         if (value) {
             const dungeon = search(value)
